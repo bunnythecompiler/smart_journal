@@ -1,0 +1,28 @@
+{% extends 'journal/base.html'%}
+{% block content %}
+    <div class="center_journal">
+        <h1>Favourites </h1>
+        <h1>you have {{ count }} favourites</h1>
+    </div>
+    <div >
+        <div class="col-md-9">
+            <div class="row">
+                {% for journal in journals %}
+                  {% if journal.favourite %}
+                      <div class="card" style="width: 18rem;">
+                          <img src="{{ journal.photo.url}}" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ journal.title }}</h5>
+                            <p class="font-weight-light">Created on {{ journal.author}} on {{ journal.date_created }}</p>
+                            <button type="button" class="btn btn-primary">Favourite</button>
+                            <a href="{% url 'journal_detail' journal.id %}" class="btn btn-primary">View</a>
+                          </div>
+                        </div>
+                  {% endif %}
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}

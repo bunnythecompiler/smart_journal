@@ -1,0 +1,32 @@
+{% extends 'journal/base.html'%}
+{% block content %}
+    <style>
+        .center_journal {
+            text-align: center;
+        }
+    </style>
+    <div class="center_detail">
+       <h1>Smart Journal </h1>
+    </div>
+    <div class="center_journal">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ journal.photo.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ journal.title }}</h5>
+                      <p class="font-weight-light">Created on {{ journal.author}} on {{ journal.date_created }}</p>
+                      <p class="card-text">{{ journal.content }}</p>
+                      {% if journal.favourite %}
+                        <button type="button" class="btn btn-primary">Favourite</button>
+                      {% endif%}
+                      <a href="{% url 'delete' journal.id%}" class="btn btn-primary">Delete</a>
+                      <a href="{% url 'update'  journal.id %}" class="btn btn-primary">Update</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}

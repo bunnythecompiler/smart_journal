@@ -1,0 +1,41 @@
+{% extends 'journal/base.html'%}
+{% block content %}
+    <div class="center_journal">
+        <h1>Search </h1>
+    </div>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"></span>
+                </div>
+                <input type="text" class="form-control" name="journal">
+                <button type="submit" class="btn btn-dark">Search</button>
+              </div>
+
+
+        </form>
+    </div>
+    <div >
+        <div class="col-md-9">
+            <div class="row">
+                {% for result in results  %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ result.photo.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ result.title }}</h5>
+                      <p class="font-weight-light">Created on {{ result.author}} on {{ result.date_created }}</p>
+                      {% if result.favourite %}
+                        <button type="button" class="btn btn-primary">Favourite</button>
+                      {% endif%}
+                      <a href="{% url 'journal_detail' result.id %}" class="btn btn-primary">View</a>
+                    </div>
+                  </div>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}

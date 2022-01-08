@@ -1,0 +1,12 @@
+{% extends 'journal/base.html'%}
+{% block content %}
+    <div class="center_delete">
+        <h1>Delete Journal</h1>
+        <form method="POST">
+            {% csrf_token %}
+            are you sure you want to delete "{{ object }}"? <br/>
+            <button class="btn btn-primary" type="submit">delete</button>
+        </form>
+    </div>
+    
+{% endblock content %}

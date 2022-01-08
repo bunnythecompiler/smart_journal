@@ -1,0 +1,12 @@
+{% extends 'journal/base.html'%}
+{% block content %}
+    <div class="center_update">
+        <h1> Update Journal </h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">update</button>
+        </form>
+    </div>
+    
+{% endblock content %}
